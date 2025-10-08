@@ -6,22 +6,20 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Card extends DeckOfCards
+public class Card extends Actor
 {
     int valueOfCard = 0;
     String cardValue;
     String cardSuit;
-    
+
     public void act()
     {
         // Add your action code here.
     }
-    
+
     public Card (int cardVal, String cardSu, String cardIs){
-        valueOfCard = cardVal; //Value of card in Blackjack
         cardSuit = cardSu; //String of Card Suit
-        
-        
+
         if (cardVal < 10){
             cardValue = String.valueOf(cardVal+1);
         }
@@ -38,8 +36,10 @@ public class Card extends DeckOfCards
                     break;
             } //Converts >10 valued cards to court cards
         } //Converts cardVal into the value of the card
-        //Sets valueOfCard to the value in Blackjack it has
-        
-        
+
+        if (cardVal > 10){
+            valueOfCard = 10;
+        } //Sets valueOfCard to the value in Blackjack it has
+
     }
 }

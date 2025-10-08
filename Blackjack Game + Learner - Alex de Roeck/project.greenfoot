@@ -2,10 +2,10 @@
 dependency1.from=DeckOfCards
 dependency1.to=Card
 dependency1.type=UsesDependency
-editor.fx.0.height=902
+editor.fx.0.height=937
 editor.fx.0.width=1496
 editor.fx.0.x=65
-editor.fx.0.y=69
+editor.fx.0.y=34
 height=1018
 package.numDependencies=1
 package.numTargets=6

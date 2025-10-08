@@ -18,16 +18,34 @@ public class DeckOfCards extends Actor
 
     public void dealCard(){
         // Randomly select a card
+        String cardValue = "N";
         String cardSuit = "N";
         int rand1 = -1;
         int rand2 = -1;
-        
+
         // Might need to check if there are cards left in the deck later on **************************
         while (checkCardUsed(rand1, rand2) == true){
             rand1 = Greenfoot.getRandomNumber(13); // (0 <= x < 13), one more than array because array starts at 0
             rand2 = Greenfoot.getRandomNumber(4);
         }
-        
+
+        if (rand1 < 10){
+            cardValue = String.valueOf(rand1+1);
+        }
+        else{
+            switch (rand1){
+                case 10:
+                    cardValue = "J";
+                    break;
+                case 11:
+                    cardValue = "Q";
+                    break;
+                case 12:
+                    cardValue = "K";
+                    break;
+            } //Converts >10 valued cards to court cards
+        } //Converts rand1 into the value of the card
+
         switch (rand2){ 
             case 0:
                 cardSuit = "S";
@@ -42,8 +60,8 @@ public class DeckOfCards extends Actor
                 cardSuit = "D";
                 break;
         } // Sets cardSuit to the card's suit
-        
-        String cardIs = String.valueOf(rand1) + cardSuit;
+
+        String cardIs = cardValue + cardSuit;
         playedCards.add(cardIs);
         Card card = new Card(rand1, cardSuit, cardIs);
         //instantiate new card with rand1 as value and cardSuit as suit
