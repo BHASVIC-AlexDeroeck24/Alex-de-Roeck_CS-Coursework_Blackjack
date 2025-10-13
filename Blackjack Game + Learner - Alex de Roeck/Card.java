@@ -17,7 +17,15 @@ public class Card extends Actor
         // Add your action code here.
     }
 
-    public Card (int cardVal, String cardSu, String cardIs){
+    public Card (int cardValue, int valueOfCard, String cardSuit, String cardIs){
+        //
+
+        
+    }
+    
+    //UNUSED CODE BELOW ---------------------------------------------------------------------------------------------------------------
+    
+    public void UNUSED_CODE1 (int cardVal, String cardSu, String cardIs){
         cardSuit = cardSu; //String of Card Suit
 
         if (cardVal < 10){
