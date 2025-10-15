@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList; // For array lists
+import java.util.Collections;   // Used to randomise the order of data in an ArrayList
 
 public class DeckOfCards extends Actor
 {
@@ -15,18 +16,34 @@ public class DeckOfCards extends Actor
     public void shuffleDeck()
     {
         // Puts all playedCards into the unusedCards ArrayList and randomises their order.
-        
+        unusedCards.addAll(inUseCards);
+        unusedCards.addAll(playedCards);
+        inUseCards.clear();
+        playedCards.clear();
+        Collections.shuffle(unusedCards);   // Randomises the order of the data in 'unusedCards'
     }
 
     public void dealCard(){
         //      
 
     }
+
+    public void useCard(Card c){
+        // Adds a passed card object to the 'inUseCards' ArrayList
+        inUseCards.add(c);
+        unusedCards.remove(c);
+    }
     
+    public void playCard(Card c){
+        // Adds a passed card object to the 'playedCards' ArrayList
+        playedCards.add(c);
+        inUseCards.remove(c);
+    }
+
     public void createDeck(){
         // Adds all card to 'unusedCards'
         // Card (int cardValue, int valueOfCard, String cardSuit, String cardIs)
-        
+
         //SPADES ----------------------------------------------------
         unusedCards.add(new Card(1, 11, "S", "AS")); //Ace of Spades
         unusedCards.add(new Card(2, 2, "S", "2S")); //Two of Spades
@@ -42,7 +59,7 @@ public class DeckOfCards extends Actor
         unusedCards.add(new Card(12, 10, "S", "QS")); //Queen of Spades
         unusedCards.add(new Card(13, 10, "S", "KS")); //King of Spades
         //-----------------------------------------------------------
-        
+
         //HEARTS ----------------------------------------------------
         unusedCards.add(new Card(1, 11, "H", "AH")); //Ace of Hearts
         unusedCards.add(new Card(2, 2, "H", "2H")); //Two of Hearts
@@ -58,7 +75,7 @@ public class DeckOfCards extends Actor
         unusedCards.add(new Card(12, 10, "H", "QH")); //Queen of Hearts
         unusedCards.add(new Card(13, 10, "H", "KH")); //King of Hearts
         //-----------------------------------------------------------
-        
+
         //CLUBS ----------------------------------------------------
         unusedCards.add(new Card(1, 11, "C", "AC")); //Ace of Clubs
         unusedCards.add(new Card(2, 2, "C", "2C")); //Two of Clubs
@@ -74,7 +91,7 @@ public class DeckOfCards extends Actor
         unusedCards.add(new Card(12, 10, "C", "QC")); //Queen of Clubs
         unusedCards.add(new Card(13, 10, "C", "KC")); //King of Clubs
         //-----------------------------------------------------------
-        
+
         //DIAMONDS ----------------------------------------------------
         unusedCards.add(new Card(1, 11, "D", "AD")); //Ace of Diamonds
         unusedCards.add(new Card(2, 2, "D", "2D")); //Two of Diamonds
@@ -93,7 +110,7 @@ public class DeckOfCards extends Actor
     }
 
     // UNUSED CODE BELOW -----------------------------------------------------------------------------------------------------------------
-    
+
     public void UNUSED_CODE1(){
         // Randomly select a card
         String cardValue = "N";
@@ -144,7 +161,7 @@ public class DeckOfCards extends Actor
         //Card card = new Card(rand1, cardSuit, cardIs);
         //instantiate new card with rand1 as value and cardSuit as suit
     }
-    
+
     private boolean UNUSED_CODE2(int rand1, int rand2){
         // Check it is not in playedCards
         if (rand1 == -1 && rand2 == -1){
@@ -195,7 +212,7 @@ public class DeckOfCards extends Actor
         //            return true;
         //        }
         //    }
-            return false;
+        return false;
         //} //Loops through playedCards[] to check if the card has been played yet
     }
 }
