@@ -23,9 +23,9 @@ public class DeckOfCards extends Actor
         Collections.shuffle(unusedCards);   // Randomises the order of the data in 'unusedCards'
     }
 
-    public void dealCard(){
-        //      
-
+    public void dealCard(Card c){
+        //  
+        useCard(c);
     }
 
     public void useCard(Card c){
