@@ -18,7 +18,7 @@ public class Card extends Actor
         // Add your action code here.
     }
 
-    public Card (int cardVal, int valOfCard, String cardSu, String cardIS){
+    public Card (int cardVal, int valOfCard, String cardSu, String cardIS, boolean faceDown){
         cardValue = cardVal;
         valueOfCard = valOfCard;
         cardSuit = cardSu;

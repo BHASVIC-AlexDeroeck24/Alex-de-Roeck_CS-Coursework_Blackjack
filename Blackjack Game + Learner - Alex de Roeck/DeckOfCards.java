@@ -23,9 +23,9 @@ public class DeckOfCards extends Actor
         Collections.shuffle(unusedCards);   // Randomises the order of the data in 'unusedCards'
     }
 
-    public void dealCard(Card c){
-        //  
-        useCard(c);
+    public void dealCard(){
+        //  Take card from deck
+        useCard(unusedCards.get(unusedCards.size()-1));
     }
 
     public void useCard(Card c){
@@ -42,70 +42,70 @@ public class DeckOfCards extends Actor
 
     public void createDeck(){
         // Adds all card to 'unusedCards'
-        // Card (int cardValue, int valueOfCard, String cardSuit, String cardIs)
+        // Card (int cardValue, int valueOfCard, String cardSuit, String cardIs, boolean faceDown)
 
         //SPADES ----------------------------------------------------
-        unusedCards.add(new Card(1, 11, "S", "AS")); //Ace of Spades
-        unusedCards.add(new Card(2, 2, "S", "2S")); //Two of Spades
-        unusedCards.add(new Card(3, 3, "S", "3S")); //Three of Spades
-        unusedCards.add(new Card(4, 4, "S", "4S")); //Four of Spades
-        unusedCards.add(new Card(5, 5, "S", "5S")); //Five of Spades
-        unusedCards.add(new Card(6, 6, "S", "6S")); //Six of Spades
-        unusedCards.add(new Card(7, 7, "S", "7S")); //Seven of Spades
-        unusedCards.add(new Card(8, 8, "S", "8S")); //Eight of Spades
-        unusedCards.add(new Card(9, 9, "S", "9S")); //Nine of Spades
-        unusedCards.add(new Card(10, 10, "S", "10S")); //Ten of Spades
-        unusedCards.add(new Card(11, 10, "S", "JS")); //Jack of Spades
-        unusedCards.add(new Card(12, 10, "S", "QS")); //Queen of Spades
-        unusedCards.add(new Card(13, 10, "S", "KS")); //King of Spades
+        unusedCards.add(new Card(1, 11, "S", "AS", false)); //Ace of Spades
+        unusedCards.add(new Card(2, 2, "S", "2S", false)); //Two of Spades
+        unusedCards.add(new Card(3, 3, "S", "3S", false)); //Three of Spades
+        unusedCards.add(new Card(4, 4, "S", "4S", false)); //Four of Spades
+        unusedCards.add(new Card(5, 5, "S", "5S", false)); //Five of Spades
+        unusedCards.add(new Card(6, 6, "S", "6S", false)); //Six of Spades
+        unusedCards.add(new Card(7, 7, "S", "7S", false)); //Seven of Spades
+        unusedCards.add(new Card(8, 8, "S", "8S", false)); //Eight of Spades
+        unusedCards.add(new Card(9, 9, "S", "9S", false)); //Nine of Spades
+        unusedCards.add(new Card(10, 10, "S", "10S", false)); //Ten of Spades
+        unusedCards.add(new Card(11, 10, "S", "JS", false)); //Jack of Spades
+        unusedCards.add(new Card(12, 10, "S", "QS", false)); //Queen of Spades
+        unusedCards.add(new Card(13, 10, "S", "KS", false)); //King of Spades
         //-----------------------------------------------------------
 
         //HEARTS ----------------------------------------------------
-        unusedCards.add(new Card(1, 11, "H", "AH")); //Ace of Hearts
-        unusedCards.add(new Card(2, 2, "H", "2H")); //Two of Hearts
-        unusedCards.add(new Card(3, 3, "H", "3H")); //Three of Hearts
-        unusedCards.add(new Card(4, 4, "H", "4H")); //Four of Hearts
-        unusedCards.add(new Card(5, 5, "H", "5H")); //Five of Hearts
-        unusedCards.add(new Card(6, 6, "H", "6H")); //Six of Hearts
-        unusedCards.add(new Card(7, 7, "H", "7H")); //Seven of Hearts
-        unusedCards.add(new Card(8, 8, "H", "8H")); //Eight of Hearts
-        unusedCards.add(new Card(9, 9, "H", "9H")); //Nine of Hearts
-        unusedCards.add(new Card(10, 10, "H", "10H")); //Ten of Hearts
-        unusedCards.add(new Card(11, 10, "H", "JH")); //Jack of Hearts
-        unusedCards.add(new Card(12, 10, "H", "QH")); //Queen of Hearts
-        unusedCards.add(new Card(13, 10, "H", "KH")); //King of Hearts
+        unusedCards.add(new Card(1, 11, "H", "AH", false)); //Ace of Hearts
+        unusedCards.add(new Card(2, 2, "H", "2H", false)); //Two of Hearts
+        unusedCards.add(new Card(3, 3, "H", "3H", false)); //Three of Hearts
+        unusedCards.add(new Card(4, 4, "H", "4H", false)); //Four of Hearts
+        unusedCards.add(new Card(5, 5, "H", "5H", false)); //Five of Hearts
+        unusedCards.add(new Card(6, 6, "H", "6H", false)); //Six of Hearts
+        unusedCards.add(new Card(7, 7, "H", "7H", false)); //Seven of Hearts
+        unusedCards.add(new Card(8, 8, "H", "8H", false)); //Eight of Hearts
+        unusedCards.add(new Card(9, 9, "H", "9H", false)); //Nine of Hearts
+        unusedCards.add(new Card(10, 10, "H", "10H", false)); //Ten of Hearts
+        unusedCards.add(new Card(11, 10, "H", "JH", false)); //Jack of Hearts
+        unusedCards.add(new Card(12, 10, "H", "QH", false)); //Queen of Hearts
+        unusedCards.add(new Card(13, 10, "H", "KH", false)); //King of Hearts
         //-----------------------------------------------------------
 
         //CLUBS ----------------------------------------------------
-        unusedCards.add(new Card(1, 11, "C", "AC")); //Ace of Clubs
-        unusedCards.add(new Card(2, 2, "C", "2C")); //Two of Clubs
-        unusedCards.add(new Card(3, 3, "C", "3C")); //Three of Clubs
-        unusedCards.add(new Card(4, 4, "C", "4C")); //Four of Clubs
-        unusedCards.add(new Card(5, 5, "C", "5C")); //Five of Clubs
-        unusedCards.add(new Card(6, 6, "C", "6C")); //Six of Clubs
-        unusedCards.add(new Card(7, 7, "C", "7C")); //Seven of Clubs
-        unusedCards.add(new Card(8, 8, "C", "8C")); //Eight of Clubs
-        unusedCards.add(new Card(9, 9, "C", "9C")); //Nine of Clubs
-        unusedCards.add(new Card(10, 10, "C", "10C")); //Ten of Clubs
-        unusedCards.add(new Card(11, 10, "C", "JC")); //Jack of Clubs
-        unusedCards.add(new Card(12, 10, "C", "QC")); //Queen of Clubs
-        unusedCards.add(new Card(13, 10, "C", "KC")); //King of Clubs
+        unusedCards.add(new Card(1, 11, "C", "AC", false)); //Ace of Clubs
+        unusedCards.add(new Card(2, 2, "C", "2C", false)); //Two of Clubs
+        unusedCards.add(new Card(3, 3, "C", "3C", false)); //Three of Clubs
+        unusedCards.add(new Card(4, 4, "C", "4C", false)); //Four of Clubs
+        unusedCards.add(new Card(5, 5, "C", "5C", false)); //Five of Clubs
+        unusedCards.add(new Card(6, 6, "C", "6C", false)); //Six of Clubs
+        unusedCards.add(new Card(7, 7, "C", "7C", false)); //Seven of Clubs
+        unusedCards.add(new Card(8, 8, "C", "8C", false)); //Eight of Clubs
+        unusedCards.add(new Card(9, 9, "C", "9C", false)); //Nine of Clubs
+        unusedCards.add(new Card(10, 10, "C", "10C", false)); //Ten of Clubs
+        unusedCards.add(new Card(11, 10, "C", "JC", false)); //Jack of Clubs
+        unusedCards.add(new Card(12, 10, "C", "QC", false)); //Queen of Clubs
+        unusedCards.add(new Card(13, 10, "C", "KC", false)); //King of Clubs
         //-----------------------------------------------------------
 
         //DIAMONDS ----------------------------------------------------
-        unusedCards.add(new Card(1, 11, "D", "AD")); //Ace of Diamonds
-        unusedCards.add(new Card(2, 2, "D", "2D")); //Two of Diamonds
-        unusedCards.add(new Card(3, 3, "D", "3D")); //Three of Diamonds
-        unusedCards.add(new Card(4, 4, "D", "4D")); //Four of Diamonds
-        unusedCards.add(new Card(5, 5, "D", "5D")); //Five of Diamonds
-        unusedCards.add(new Card(6, 6, "D", "6D")); //Six of Diamonds
-        unusedCards.add(new Card(7, 7, "D", "7D")); //Seven of Diamonds
-        unusedCards.add(new Card(8, 8, "D", "8D")); //Eight of Diamonds
-        unusedCards.add(new Card(9, 9, "D", "9D")); //Nine of Diamonds
-        unusedCards.add(new Card(10, 10, "D", "10D")); //Ten of Diamonds
-        unusedCards.add(new Card(11, 10, "D", "JD")); //Jack of Diamonds
-        unusedCards.add(new Card(12, 10, "D", "QD")); //Queen of Diamonds
-        unusedCards.add(new Card(13, 10, "D", "KD")); //King of Diamonds
+        unusedCards.add(new Card(1, 11, "D", "AD", false)); //Ace of Diamonds
+        unusedCards.add(new Card(2, 2, "D", "2D", false)); //Two of Diamonds
+        unusedCards.add(new Card(3, 3, "D", "3D", false)); //Three of Diamonds
+        unusedCards.add(new Card(4, 4, "D", "4D", false)); //Four of Diamonds
+        unusedCards.add(new Card(5, 5, "D", "5D", false)); //Five of Diamonds
+        unusedCards.add(new Card(6, 6, "D", "6D", false)); //Six of Diamonds
+        unusedCards.add(new Card(7, 7, "D", "7D", false)); //Seven of Diamonds
+        unusedCards.add(new Card(8, 8, "D", "8D", false)); //Eight of Diamonds
+        unusedCards.add(new Card(9, 9, "D", "9D", false)); //Nine of Diamonds
+        unusedCards.add(new Card(10, 10, "D", "10D", false)); //Ten of Diamonds
+        unusedCards.add(new Card(11, 10, "D", "JD", false)); //Jack of Diamonds
+        unusedCards.add(new Card(12, 10, "D", "QD", false)); //Queen of Diamonds
+        unusedCards.add(new Card(13, 10, "D", "KD", false)); //King of Diamonds
         //-----------------------------------------------------------
     }
 
