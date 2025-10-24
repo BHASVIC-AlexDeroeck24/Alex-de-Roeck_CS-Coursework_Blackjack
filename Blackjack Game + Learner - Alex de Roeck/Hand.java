@@ -28,7 +28,6 @@ public class Hand extends Actor
     {
         //
         dealCard();
-        
     }
     
     public void stand(currentHand)

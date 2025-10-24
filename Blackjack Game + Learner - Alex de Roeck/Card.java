@@ -12,17 +12,19 @@ public class Card extends Actor
     int valueOfCard;
     String cardSuit;
     String cardIs;
+    boolean faceDown;
 
     public void act()
     {
         // Add your action code here.
     }
 
-    public Card (int cardVal, int valOfCard, String cardSu, String cardIS, boolean faceDown){
+    public Card (int cardVal, int valOfCard, String cardSu, String cardIS, boolean faceDOWN){
         cardValue = cardVal;
         valueOfCard = valOfCard;
         cardSuit = cardSu;
         cardIs = cardIS;
+        faceDown = faceDOWN;
 
     }
     
