@@ -10,11 +10,12 @@ import java.util.Collections;   // Used to randomise the order of data in an Arr
  */
 public class Hand extends Actor
 {
-    int handTotal = 0;
-    int card1Value = 0;
-    int card2Value = 0;
-    int currentHand = 1;
-    ArrayList<Hand> handsQueue = new ArrayList<Hand>();
+    private int handTotal;
+    private int card1Value;
+    private int card2Value;
+    private int currentHand;
+    private boolean handLost;
+    private ArrayList<Hand> handsQueue;
 
     //  Have a queue for the hands.
     //  This is so I can access the hands from first to last
@@ -25,10 +26,18 @@ public class Hand extends Actor
         // Add your action code here.
     }
 
-    public Hand (int NEWhandTotal, int NEWcard1Value, int NEWcard2Value){
-        handTotal = NEWhandTotal;
-        card1Value = NEWcard1Value;
-        card2Value = NEWcard2Value;
+    public Hand (){
+        this.handsQueue = new ArrayList<Hand>();
+        
+        Card card1 = deck.dealCard();
+        this.card1Value = card1.getCardValue();
+        
+        Card card2 = DeckOfCards.dealCard();
+        this.card2Value = card2.getCardValue();
+        
+        this.handsQueue.add(new Hand(card1Val + card2val, card1val, card2val));
+        
+        handTotal = card1Value + card2Value;
     }
 
     public Hand getCurrentHand(){
@@ -37,17 +46,11 @@ public class Hand extends Actor
         // handsQueue.remove(firstHand);
         return currentHand;
     }
-    
-    public void createHand(int card1val, int card2val)
-    {
-        //Create a hand
-        handsQueue.add(new Hand(card1val + card2val, card1val, card2val));
-    }
 
     public void hit(Hand getCurrentHand)
     {
         //
-        dealCard();
+        
     }
 
     public void stand(Hand getCurrentHand)

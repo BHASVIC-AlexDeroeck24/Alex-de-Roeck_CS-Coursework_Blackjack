@@ -4,15 +4,23 @@ import java.util.Collections;   // Used to randomise the order of data in an Arr
 
 public class DeckOfCards extends Actor
 {
-    ArrayList<Card> unusedCards = new ArrayList<Card>();    // UNUSED cards go here
-    ArrayList<Card> inUseCards = new ArrayList<Card>();     // IN USE cards go here
-    ArrayList<Card> playedCards = new ArrayList<Card>();    // PLAYED cards go here
+    private ArrayList<Card> unusedCards;   // UNUSED cards go here
+    private ArrayList<Card> inUseCards;    // IN USE cards go here
+    private ArrayList<Card> playedCards;   // PLAYED cards go here
 
     public void act()
     {
         // Add your action code here.
     }
 
+    public DeckOfCards(){
+        //
+        this.unusedCards = new ArrayList<Card>();    // UNUSED cards go here
+        this.inUseCards = new ArrayList<Card>();     // IN USE cards go here
+        this.playedCards = new ArrayList<Card>();    // PLAYED cards go here
+        createDeck();
+    }
+    
     public void shuffleDeck()
     {
         // Puts all playedCards into the unusedCards ArrayList and randomises their order.
@@ -23,9 +31,11 @@ public class DeckOfCards extends Actor
         Collections.shuffle(unusedCards);   // Randomises the order of the data in 'unusedCards'
     }
 
-    public void dealCard(){
+    public Card dealCard(){
         //  Take card from deck
-        useCard(unusedCards.get(unusedCards.size()-1));
+        Card newCard = unusedCards.get(unusedCards.size()-1);
+        useCard(newCard);
+        return newCard;
     }
 
     public void useCard(Card c){

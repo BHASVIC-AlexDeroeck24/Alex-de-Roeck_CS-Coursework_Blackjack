@@ -8,11 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Card extends Actor
 {
-    int cardValue;
-    int valueOfCard;
-    String cardSuit;
-    String cardIs;
-    boolean faceDown;
+    private int cardValue;
+    private int valueOfCard;
+    private String cardSuit;
+    private String cardIs;
+    private boolean faceDown;
 
     public void act()
     {
@@ -20,12 +20,17 @@ public class Card extends Actor
     }
 
     public Card (int cardVal, int valOfCard, String cardSu, String cardIS, boolean faceDOWN){
-        cardValue = cardVal;
-        valueOfCard = valOfCard;
-        cardSuit = cardSu;
-        cardIs = cardIS;
-        faceDown = faceDOWN;
+        this.cardValue = cardVal;
+        this.valueOfCard = valOfCard;
+        this.cardSuit = cardSu;
+        this.cardIs = cardIS;
+        this.faceDown = faceDOWN;
 
+    }
+    
+    public int getCardValue(){
+        //
+        return valueOfCard;
     }
     
     //UNUSED CODE BELOW ---------------------------------------------------------------------------------------------------------------
