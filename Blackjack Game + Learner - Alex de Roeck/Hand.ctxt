@@ -1,8 +1,17 @@
 #BlueJ class context
 comment0.target=Hand
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Hand\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
 comment1.target=void\ act()
 comment2.params=
-comment2.target=void\ createhand()
-numComments=3
+comment2.target=Hand()
+comment3.params=
+comment3.target=Hand\ getCurrentHand()
+comment4.params=getCurrentHand
+comment4.target=void\ hit(Hand)
+comment5.params=getCurrentHand
+comment5.target=void\ stand(Hand)
+comment6.params=getCurrentHand
+comment6.target=void\ split(Hand)
+comment7.params=getCurrentHand
+comment7.target=void\ doubleDown(Hand)
+numComments=8

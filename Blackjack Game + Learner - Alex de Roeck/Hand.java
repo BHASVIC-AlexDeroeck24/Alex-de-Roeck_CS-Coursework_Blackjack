@@ -1,13 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList; // For array lists
-import java.util.Collections;   // Used to randomise the order of data in an ArrayList
 
-/**
- * Write a description of class Hand here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Hand extends Actor
 {
     private int handTotal;
@@ -15,10 +8,11 @@ public class Hand extends Actor
     private int card2Value;
     private int currentHand;
     private boolean handLost;
-    private ArrayList<Hand> handsQueue;
+    private ArrayList<Hand> handsStack;
 
-    //  Have a queue for the hands.
+    //  Have a Stack for the hands.
     //  This is so I can access the hands from first to last
+    //  In a first in last out order.
     //  Will need to check if the queue is empty.
 
     public void act()
@@ -27,15 +21,19 @@ public class Hand extends Actor
     }
 
     public Hand (){
+        World world = getWorld();
+        MainGame mainGame = (MainGame)world;
+        DeckOfCards deck = mainGame.getDeck();
+        
         this.handsQueue = new ArrayList<Hand>();
         
         Card card1 = deck.dealCard();
         this.card1Value = card1.getCardValue();
         
-        Card card2 = DeckOfCards.dealCard();
+        Card card2 = deck.dealCard();
         this.card2Value = card2.getCardValue();
         
-        this.handsQueue.add(new Hand(card1Val + card2val, card1val, card2val));
+        handsQueue.add(this);
         
         handTotal = card1Value + card2Value;
     }
