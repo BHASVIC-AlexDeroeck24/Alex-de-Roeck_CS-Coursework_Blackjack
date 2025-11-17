@@ -1,16 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList; // For array lists
 
-/**
- * Write a description of class Player here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Player extends Actor
 {
     int playerMoney;
     Boolean playerLost = false;
+    private Hand currentHand;
     private ArrayList<Hand> handsStack;
     //  Have a Stack for the hands.
     //  This is so I can access the hands from first to last.
@@ -22,4 +17,10 @@ public class Player extends Actor
         // Add your action code here.
     }
     
+    public Hand getCurrentHand(){
+        handsStack.trimToSize(); // Removes any empty spaces in the queue
+        Hand currentH = handsStack.get(0);
+        // handsStack.remove(firstHand);
+        return currentH;
+    }
 }

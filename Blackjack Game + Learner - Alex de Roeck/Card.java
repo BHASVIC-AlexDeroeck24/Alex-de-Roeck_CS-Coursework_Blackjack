@@ -25,12 +25,10 @@ public class Card extends Actor
         this.cardSuit = cardSu;
         this.cardIs = cardIS;
         this.faceDown = faceDOWN;
-
     }
     
     public int getCardValue(){
-        //
-        return valueOfCard;
+        return this.valueOfCard;
     }
     
     //UNUSED CODE BELOW ---------------------------------------------------------------------------------------------------------------

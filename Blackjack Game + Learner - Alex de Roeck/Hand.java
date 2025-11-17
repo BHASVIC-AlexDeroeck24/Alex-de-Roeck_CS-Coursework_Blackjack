@@ -6,14 +6,10 @@ public class Hand extends Actor
     private int handTotal;
     private int card1Value;
     private int card2Value;
-    private int currentHand;
     private boolean handLost;
-    private ArrayList<Hand> handsStack;
+    private ArrayList<Card> cardsInHand;
 
-    //  Have a Stack for the hands.
-    //  This is so I can access the hands from first to last
-    //  In a first in last out order.
-    //  Will need to check if the queue is empty.
+    //  An ArrayList for the card objects in each hand.
 
     public void act()
     {
@@ -25,30 +21,28 @@ public class Hand extends Actor
         MainGame mainGame = (MainGame)world;
         DeckOfCards deck = mainGame.getDeck();
         
-        this.handsQueue = new ArrayList<Hand>();
+        this.cardsInHand = new ArrayList<Card>();
         
         Card card1 = deck.dealCard();
+        this.cardsInHand.add(card1);
         this.card1Value = card1.getCardValue();
         
         Card card2 = deck.dealCard();
+        this.cardsInHand.add(card2);
         this.card2Value = card2.getCardValue();
         
-        handsQueue.add(this);
-        
-        handTotal = card1Value + card2Value;
-    }
-
-    public Hand getCurrentHand(){
-        handsQueue.trimToSize(); // Removes any empty spaces in the queue
-        Hand currentHand = handsQueue.get(0);
-        // handsQueue.remove(firstHand);
-        return currentHand;
+        this.handTotal = card1Value + card2Value;
     }
 
     public void hit(Hand getCurrentHand)
     {
-        //
+        World world = getWorld();
+        MainGame mainGame = (MainGame)world;
+        DeckOfCards deck = mainGame.getDeck();
         
+        Card newCard = deck.dealCard();
+        this.cardsInHand.add(newCard);
+        this.handTotal = newCard.getCardValue();
     }
 
     public void stand(Hand getCurrentHand)
