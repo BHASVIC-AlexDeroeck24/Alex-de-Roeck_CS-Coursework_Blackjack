@@ -33,6 +33,24 @@ public class Hand extends Actor
         
         this.handTotal = card1Value + card2Value;
     }
+    
+    public Hand (Card cardOne){ //polymorhpism for splitting
+        World world = getWorld();
+        MainGame mainGame = (MainGame)world;
+        DeckOfCards deck = mainGame.getDeck();
+        
+        this.cardsInHand = new ArrayList<Card>();
+        
+        Card card1 = cardOne;
+        this.cardsInHand.add(card1);
+        this.card1Value = card1.getCardValue();
+        
+        Card card2 = deck.dealCard();
+        this.cardsInHand.add(card2);
+        this.card2Value = card2.getCardValue();
+        
+        this.handTotal = card1Value + card2Value;
+    }
 
     public void hit(Hand getCurrentHand)
     {
