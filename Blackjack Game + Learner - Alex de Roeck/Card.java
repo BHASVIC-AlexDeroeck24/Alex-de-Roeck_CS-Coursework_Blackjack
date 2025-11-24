@@ -1,11 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class Card here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Card extends Actor
 {
     private int cardValue;
@@ -26,13 +20,13 @@ public class Card extends Actor
         this.cardIs = cardIS;
         this.faceDown = faceDOWN;
     }
-    
+
     public int getCardValue(){
         return this.valueOfCard;
     }
-    
+
     //UNUSED CODE BELOW ---------------------------------------------------------------------------------------------------------------
-    
+
     public void UNUSED_CODE1 (int cardVal, String cardSu, String cardIs){
         //cardSuit = cardSu; //String of Card Suit
 

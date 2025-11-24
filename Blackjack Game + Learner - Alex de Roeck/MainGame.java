@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MainGame extends World
 {
     DeckOfCards deck = new DeckOfCards();
+    Player player = new Player();
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -23,5 +24,10 @@ public class MainGame extends World
     public DeckOfCards getDeck()
     {
         return deck;
+    }
+    
+    public Player getPlayer()
+    {
+        return player;
     }
 }
