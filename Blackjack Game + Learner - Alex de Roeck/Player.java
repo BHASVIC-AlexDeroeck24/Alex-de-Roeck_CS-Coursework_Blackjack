@@ -4,9 +4,11 @@ import java.util.LinkedList; // For linked lists
 public class Player extends Actor
 {
     private int playerMoney;
-    private Boolean playerLost = false;
+    private Boolean playerLost;
     private int currentHand;
     private LinkedList<Hand> handsList;
+    private int lastHand;
+    private Boolean isTurn;
     //  Have a List for the hands.
     //  Will need to check if the list is empty.
 
@@ -18,21 +20,51 @@ public class Player extends Actor
     public Player (){
         this.playerMoney = 500;
         this.playerLost = false;
-        this.currentHand = 1;
+        this.currentHand = 0;
         this.handsList = new LinkedList<Hand>();
+        this.lastHand = 0;
     }
 
+    
+    public int getLastHand (){
+        return(this.lastHand);
+    }
+    
+    public void setLastHand (int value){
+        this.lastHand = value;
+    }
+    
+    
+    public Boolean getPlayerTurn (){
+        return(this.isTurn);
+    }
+    
+    public void setPlayerTurn (Boolean value){
+        this.isTurn = value;
+    }
+    
+    
+    public Hand getPlayerHand (int index){
+        return (this.handsList.get(index));
+    }
+    
     public void addToHandList (Hand hand){
         this.handsList.add(hand);
     }
 
+    
     public Hand getCurrentHand(){
-        Hand currentH = handsList.get(this.currentHand - 1); // Takes the first object
+        Hand currentH = handsList.get(this.currentHand); // Takes the first object
         // handsStack.remove(firstHand);
         return currentH;
     }
 
     public int getPlayerMoney(){
         return playerMoney;
+    }
+    
+    public void stand()
+    {
+        this.isTurn = false;
     }
 }

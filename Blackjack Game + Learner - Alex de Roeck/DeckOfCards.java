@@ -23,7 +23,7 @@ public class DeckOfCards extends Actor
     
     public void shuffleDeck()
     {
-        // Puts all playedCards into the unusedCards ArrayList and randomises their order.
+        // Puts all playedCards and inUseCards into the unusedCards ArrayList and randomises their order.
         unusedCards.addAll(inUseCards);
         unusedCards.addAll(playedCards);
         inUseCards.clear();
