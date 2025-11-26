@@ -9,6 +9,7 @@ public class Hand extends Actor
     private int card1Value;
     private int card2Value;
     private int handTotal;
+    private int lastPos;
 
     public void act()
     {
@@ -29,23 +30,26 @@ public class Hand extends Actor
     public Hand (){
         this.handLost = false;
         this.blackjack = false;
-        
-        World world = getWorld();
+        this.lastPos = 575;
+        this.cardsInHand = new ArrayList<Card>();
+    }
+    
+    public void startHand(World world){
         MainGame mainGame = (MainGame)world;
         DeckOfCards deck = mainGame.getDeck();
         Player player = mainGame.getPlayer();
 
         player.addToHandList(this);
 
-        this.cardsInHand = new ArrayList<Card>();
-
         Card card1 = deck.dealCard();
         this.cardsInHand.add(card1);
         this.card1Value = card1.getCardValue();
+        mainGame.addObject(card1, 490, 430);
 
         Card card2 = deck.dealCard();
         this.cardsInHand.add(card2);
         this.card2Value = card2.getCardValue();
+        mainGame.addObject(card2, 575, 430);
 
         this.handTotal = card1Value + card2Value;
     }
@@ -80,6 +84,9 @@ public class Hand extends Actor
         return (this.handTotal);
     }
     
+    public boolean getBlackjack(){
+        return (this.blackjack);
+    }
     
     public boolean getHandLost(){
         return (this.handLost);
@@ -90,23 +97,37 @@ public class Hand extends Actor
     }
     
     
-    public void hit()
+    public void hit(World world)
     {
-        World world = getWorld();
         MainGame mainGame = (MainGame)world;
         DeckOfCards deck = mainGame.getDeck();
         Player player = mainGame.getPlayer();
         
-        if (handTotal <= 21 && (player.getPlayerTurn() == true)){           
+        /**
+        Card newCard = deck.dealCard();
+            this.cardsInHand.add(newCard);
+            this.handTotal = this.handTotal + newCard.getCardValue();
+            mainGame.addObject(newCard, this.lastPos + 85, 430);
+            lastPos = lastPos + 85;
+        */
+       
+        if (this.handTotal < 21 && (player.getPlayerTurn() == true)){           
             Card newCard = deck.dealCard();
             this.cardsInHand.add(newCard);
             this.handTotal = this.handTotal + newCard.getCardValue();
+            mainGame.addObject(newCard, this.lastPos + 85, 430);
+            lastPos = lastPos + 85;
         }
+    
     }
 
-    public void stand()
+    public void stand(World world)
     {
         //
+        MainGame mainGame = (MainGame)world;
+        Player player = mainGame.getPlayer();
+        
+        player.setPlayerTurn(false);
     }
 
     public void split()

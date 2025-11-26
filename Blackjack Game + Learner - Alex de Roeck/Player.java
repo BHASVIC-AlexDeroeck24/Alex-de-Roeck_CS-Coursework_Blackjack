@@ -64,8 +64,9 @@ public class Player extends Actor
         return playerMoney;
     }
     
-    public void stand()
+    public void stand(World world)
     {
         this.isTurn = false;
+        //world.dealerTurn();
     }
 }
