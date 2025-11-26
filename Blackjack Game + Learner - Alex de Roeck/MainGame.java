@@ -9,18 +9,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MainGame extends World
 {
     DeckOfCards deck = new DeckOfCards();
-    Dealer dealer = new Dealer();
+    //Dealer dealer = new Dealer();
     Player player = new Player();
+    
+    
     
     public MainGame()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1);
-        deck.shuffleDeck();
-        
-        gameStart();
-        playerTurn();
-        dealerTurn();
+        super(600, 350, 1);
+        //deck.shuffleDeck();
+        GreenfootImage image = getImage(); // Get the current image
+        image.scale(image.getWidth() - 10, image.getHeight() - 10); // Scale down by 10 pixels
+        setImage(image); // Set the resized image back to the actor
+        //gameStart();
+        //playerTurn();
+        //dealerTurn();
     }
     
     private void gameStart(){
@@ -28,9 +32,12 @@ public class MainGame extends World
     }
     
     private void playerTurn(){
-        //
+        player.setPlayerTurn(true);
+        while(player.getPlayerTurn() == true){
+            //
+        }
     }
-    
+    /**
     private void dealerTurn(){
         while (dealer.getHandTotal() < 17){
             dealer.hit();
@@ -66,7 +73,7 @@ public class MainGame extends World
             
         }
     }
-    
+    */
     public DeckOfCards getDeck()
     {
         return deck;

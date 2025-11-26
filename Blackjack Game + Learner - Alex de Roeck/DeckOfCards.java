@@ -13,7 +13,7 @@ public class DeckOfCards extends Actor
         // Add your action code here.
     }
 
-    public DeckOfCards(){
+    public DeckOfCards (){
         //
         this.unusedCards = new ArrayList<Card>();    // UNUSED cards go here
         this.inUseCards = new ArrayList<Card>();     // IN USE cards go here

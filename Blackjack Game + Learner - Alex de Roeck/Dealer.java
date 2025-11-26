@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.ArrayList; // For linked lists
+import java.util.ArrayList; // For Array lists
 
 public class Dealer extends Actor
 {
-    private Boolean dealerLost;
-    private Boolean isTurn;
+    private boolean dealerLost;
+    private boolean isTurn;
     private boolean handLost;
     private boolean blackjack;
     private ArrayList<Card> dealerHand;//  An ArrayList for the card objects in each hand.
@@ -15,17 +15,27 @@ public class Dealer extends Actor
     public void act()
     {
         // Add your action code here.
+        if (handTotal > 21){
+            this.handLost = true;
+        }
+        
+        if (handTotal == 21){
+            this.blackjack = true;
+        }
+        else{
+            this.blackjack = false;
+        }
     }
     
-    public Dealer(){
+    public Dealer (){
         World world = getWorld();
         MainGame mainGame = (MainGame)world;
         DeckOfCards deck = mainGame.getDeck();
         
-        Boolean dealerLost = false;
-        Boolean isTurn;
-        boolean handLost;
-        boolean blackjack;
+        this.dealerLost = false;
+        this.isTurn = false;
+        this.handLost = false;
+        this.blackjack = false;
         
         Card card1 = deck.dealCard();
         this.dealerHand.add(card1);
@@ -42,7 +52,7 @@ public class Dealer extends Actor
         return(this.handTotal);
     }
     
-    public Boolean getDealerTurn (){
+    public boolean getDealerTurn (){
         return(this.isTurn);
     }
     
@@ -50,7 +60,7 @@ public class Dealer extends Actor
         this.isTurn = value;
     }
     
-    public Boolean checkDealerLost(){
+    public boolean checkDealerLost(){
         return (this.handLost);
     }
     
