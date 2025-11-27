@@ -15,7 +15,7 @@ public class HitButton extends Button
         MainGame mainGame = (MainGame)world;
         Player player = mainGame.getPlayer();
         
-        Hand hand = player.getCurrentHand();
+        Hand hand = player.getPlayerHand(player.getCurrentHand());
         
         hand.hit(world);
     }

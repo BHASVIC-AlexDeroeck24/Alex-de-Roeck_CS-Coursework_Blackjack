@@ -14,15 +14,17 @@ public class Hand extends Actor
     public void act()
     {
         // Add your action code here.
-        if (handTotal > 21){
+        if (this.handTotal > 21){
             this.handLost = true;
         }
         
-        if (handTotal == 21){
+        else if (this.handTotal == 21){
             this.blackjack = true;
         }
+        
         else{
             this.blackjack = false;
+            this.handLost = false;
         }
     }
 

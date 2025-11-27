@@ -26,12 +26,13 @@ public class StandButton extends Button
         Player player = mainGame.getPlayer();
         Dealer dealer = mainGame.getDealer();
         
-        Hand hand = player.getCurrentHand();
+        Hand hand = player.getPlayerHand(player.getCurrentHand());
         
-        player.setPlayerTurn(false);
-        //hand.stand(world);
+        hand.stand(world);
         
-        dealer.dealerTurn(world);
+        if( player.getCurrentHand() == player.getLastHand() ){
+            dealer.dealerTurn(world);
+        }
     }
     
     public StandButton (){

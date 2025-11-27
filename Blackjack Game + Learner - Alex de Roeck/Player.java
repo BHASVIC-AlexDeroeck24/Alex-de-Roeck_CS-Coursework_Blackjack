@@ -54,10 +54,8 @@ public class Player extends Actor
     }
 
     
-    public Hand getCurrentHand(){
-        Hand currentH = handsList.get(this.currentHand); // Takes the first object
-        // handsStack.remove(firstHand);
-        return currentH;
+    public int getCurrentHand(){
+        return this.currentHand;
     }
 
     public int getPlayerMoney(){

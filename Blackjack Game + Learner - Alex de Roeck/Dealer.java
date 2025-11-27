@@ -52,44 +52,49 @@ public class Dealer extends Actor
         this.card2Value = card2.getCardValue();
         mainGame.addObject(card2, 625, 120);
 
-        this.handTotal = card1Value + card2Value;
+        this.handTotal = card1Value;
     }
 
-    public void dealerTurn(World world){
+    public void dealerTurn(World world)
+    {
         MainGame mainGame = (MainGame)world;
         Player player = mainGame.getPlayer();
         revealCard();
         while (getHandTotal() < 17){
+            System.out.println("*Dealer has less than 17, dealer hits*");
             hit(mainGame);
         }
         if (getHandTotal() > 21){
+            System.out.println("*Dealer went bust, dealer stands*");
             lost();
         }
         else{
+            System.out.println("*Dealer hasn't gone bust, dealer stands");
             stand();
+            System.out.println();
             for (int i = 0; i <= player.getLastHand(); i++){
-
                 //  IF THE PLAYER'S HAND HAS ALREADY GONE BUST (DEALER HAND WINS)
-                if ( player.getPlayerHand(i).getHandLost() == true ){
+                if ( player.getPlayerHand(i).getHandLost() ){
                     System.out.println("Player's hand " + (i + 1) + " has lost, it went bust.");
                 }
 
                 //  IF THE PLAYER'S HAND TOTAL IS LESS THAN DEALER'S (DEALER HAND WINS)
-                if ( player.getPlayerHand(i).getHandTotal() < getHandTotal() ){
+                else if ( (player.getPlayerHand(i).getHandTotal() < getHandTotal()) || player.getPlayerHand(i).getHandLost()){
                     player.getPlayerHand(i).setHandLost(true);
                     System.out.println("Player's hand " + (i + 1) + " has lost, the dealer beat it.");
                 }
 
                 //  IF THE PLAYER'S HAND TOTAL IS MORE THAN DEALER'S (PLAYER HAND WINS)
-                if ( player.getPlayerHand(i).getHandTotal() < getHandTotal() ){
-                    player.getPlayerHand(i).setHandLost(true);
+                else if ( player.getPlayerHand(i).getHandTotal() > getHandTotal() ){
                     System.out.println("Player's hand " + (i + 1) + " has won, the dealer hand had less.");
                 }
 
-                if ( player.getPlayerHand(i).getHandTotal() == getHandTotal() ){
+                //  IF THE PLAYER'S HAND TOTAL IS EQUAL TO THE DEALER'S (DRAW)
+                else if ( player.getPlayerHand(i).getHandTotal() == getHandTotal() ){
                     System.out.println("Player's hand " + (i + 1) + " is equal to the dealer's hand.");
                 }
-                
+
+                // IF THE PLAYER GETS BLACKJACK (21) THEN THEY WIN
                 if ( player.getPlayerHand(i).getBlackjack()){
                     System.out.println("BLACKJACK!! The Player's hand " + (i + 1) + " has won. Dealer had " + getHandTotal());
                 }
@@ -107,9 +112,11 @@ public class Dealer extends Actor
 
     public void revealCard (){
         this.dealerHand.get(1).faceUp();
+        this.handTotal = this.handTotal + dealerHand.get(1).getCardValue();
     }
 
-    public void setDealerTurn (Boolean value){
+    public void setDealerTurn (Boolean value)
+    {
         this.isTurn = value;
     }
 

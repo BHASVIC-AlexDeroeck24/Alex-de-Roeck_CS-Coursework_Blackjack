@@ -16,8 +16,18 @@ public class MainGame extends World
     public MainGame()
     {    
         super(1200, 700, 1);
-
+        System.out.println();
+        System.out.println();
+        System.out.println("-------------------- GAME START --------------------");
+        System.out.println();
+        
         //  Making objects such as buttons and boxes --------------------------------
+        TotalValueCounter hand1Counter = new TotalValueCounter(hand1);
+        addObject(hand1Counter, 500, 500);
+        
+        TotalValueCounter dealerHandCounter = new TotalValueCounter(dealer);
+        addObject(dealerHandCounter, 695, 190);
+        
         HitButton hitButton = new HitButton();
         addObject(hitButton, 690, 650);
 
