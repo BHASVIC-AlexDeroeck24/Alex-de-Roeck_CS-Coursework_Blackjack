@@ -4,6 +4,7 @@ import java.util.LinkedList; // For linked lists
 public class Player extends Actor
 {
     private int playerMoney;
+    private int totalBet;
     private boolean playerLost;
     private int currentHand;
     private LinkedList<Hand> handsList;
@@ -14,11 +15,13 @@ public class Player extends Actor
 
     public void act()
     {
-        // Add your action code here.
+        //System.out.println(this.playerMoney);
     }
 
-    public Player (){
+    public Player ()
+    {
         this.playerMoney = 500;
+        this.totalBet = 0;
         this.playerLost = false;
         this.currentHand = 0;
         this.handsList = new LinkedList<Hand>();
@@ -59,7 +62,24 @@ public class Player extends Actor
     }
 
     public int getPlayerMoney(){
-        return playerMoney;
+        return this.playerMoney;
+    }
+    
+    
+    public int getTotalBet()
+    {
+        return totalBet;
+    }
+    
+    public void addToTotalBet(int value)
+    {
+        totalBet = totalBet + value;
+    }
+    
+    
+    public void subPlayerMoney(int value)
+    {
+        this.playerMoney = this.playerMoney - value;
     }
     
     public void stand(World world)

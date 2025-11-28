@@ -1,17 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class MainGame here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class MainGame extends World
 {
-    DeckOfCards deck = new DeckOfCards();
-    Dealer dealer = new Dealer();
-    Player player = new Player();
-    Hand hand1 = new Hand();
+    private DeckOfCards deck = new DeckOfCards();
+    private Dealer dealer = new Dealer();
+    private Player player = new Player();
+    private Hand hand1 = new Hand();
 
     public MainGame()
     {    
@@ -22,11 +16,21 @@ public class MainGame extends World
         System.out.println();
         
         //  Making objects such as buttons and boxes --------------------------------
+        
+        MoneyBox moneyBox = new MoneyBox();
+        addObject(moneyBox, 1052, 586);
+        
         TotalValueCounter hand1Counter = new TotalValueCounter(hand1);
         addObject(hand1Counter, 500, 500);
         
         TotalValueCounter dealerHandCounter = new TotalValueCounter(dealer);
         addObject(dealerHandCounter, 695, 190);
+        
+        TotalValueCounter playerMoney = new TotalValueCounter(player);
+        addObject(playerMoney, 1052, 584);
+        
+        TotalValueCounter totalBet = new TotalValueCounter(player, true);
+        addObject(totalBet, 495, 540);
         
         HitButton hitButton = new HitButton();
         addObject(hitButton, 690, 650);
@@ -39,10 +43,31 @@ public class MainGame extends World
 
         SplitButton splitButton = new SplitButton();
         addObject(splitButton, 1125, 650);
+        
+        
+        //  CHIPS ------------------------------------------------
+        
+        PokerChip1 chip1 = new PokerChip1();
+        addObject(chip1, 50, 560);
+        
+        PokerChip5 chip5 = new PokerChip5();
+        addObject(chip5, 125, 560);
+        
+        PokerChip10 chip10 = new PokerChip10();
+        addObject(chip10, 200, 560);
+        
+        PokerChip25 chip25 = new PokerChip25();
+        addObject(chip25, 50, 645);
+        
+        PokerChip100 chip100 = new PokerChip100();
+        addObject(chip100, 125, 645);
+        
+        PokerChip200 chip200 = new PokerChip200();
+        addObject(chip200, 200, 645);
 
-        MoneyBox moneyBox = new MoneyBox();
-        addObject(moneyBox, 1052, 586);
-
+        
+        //  BACKGROUND ------------------------------------------------
+        
         GreenfootImage image = getBackground();
         image.scale(1205, 700);
         setBackground(image);
