@@ -14,9 +14,12 @@ public class ResetButton extends Button
         World world = getWorld();
         MainGame mainGame = (MainGame)world;
         Player player = mainGame.getPlayer();
-
-        player.addPlayerMoney(player.getTotalBet());
-        player.emptyBet();
+        Dealer dealer = mainGame.getDealer();
+        
+        if(player.getPlayerTurn() == false && dealer.getDealerTurn() == false){
+            player.addPlayerMoney(player.getTotalBet());
+            player.emptyBet();
+        }
     }
 
     public ResetButton ()

@@ -80,6 +80,7 @@ public class Hand extends Actor
 
         this.handTotal = card1Value + card2Value;
     }   //polymorhphism for splitting
+    //extra note, I would
 
     
     public int getHandTotal(){

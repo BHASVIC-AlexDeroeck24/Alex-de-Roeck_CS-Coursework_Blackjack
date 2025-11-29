@@ -14,9 +14,12 @@ public class DealButton extends Button
         World world = getWorld();
         MainGame mainGame = (MainGame)world;
         Player player = mainGame.getPlayer();
+        Dealer dealer = mainGame.getDealer();
         
-        mainGame.gameStart();
-        player.setPlayerTurn(true);
+        if(player.getPlayerTurn() == false && dealer.getDealerTurn() == false){
+            mainGame.gameStart();
+            player.setPlayerTurn(true);
+        }
     }
     
     public DealButton ()
