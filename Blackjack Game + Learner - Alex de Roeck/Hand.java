@@ -91,7 +91,7 @@ public class Hand extends Actor
     }
     
     public boolean getHandLost(){
-        return (this.handLost);
+        return this.handLost;
     }
     
     public void setHandLost(Boolean value){

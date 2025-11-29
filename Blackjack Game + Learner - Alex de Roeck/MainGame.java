@@ -32,6 +32,12 @@ public class MainGame extends World
         TotalValueCounter totalBet = new TotalValueCounter(player, true);
         addObject(totalBet, 495, 540);
         
+        DealButton dealButton = new DealButton();
+        addObject(dealButton, 305, 560);
+        
+        ResetButton resetButton = new ResetButton();
+        addObject(resetButton, 305, 645);
+        
         HitButton hitButton = new HitButton();
         addObject(hitButton, 690, 650);
 
@@ -73,26 +79,31 @@ public class MainGame extends World
         setBackground(image);
 
         //  Game start --------------------------------
+        //deck.shuffleDeck();
+        //dealer.startDealer(this);
+        //hand1.startHand(this);
+        
+        //gameStart();
+        //playerTurn();
+        
+    }
+
+    public void gameStart(){
+        //
         deck.shuffleDeck();
         dealer.startDealer(this);
         hand1.startHand(this);
-        
-        //gameStart();
         playerTurn();
-        
     }
 
-    private void gameStart(){
-        //
-    }
-
-    private void playerTurn(){
+    public void playerTurn(){
         player.setPlayerTurn(true);
-        //while(player.getPlayerTurn() == true){
-        //
-        //}
     }
 
+    public void dealerTurn(){
+        player.setPlayerTurn(false);
+        dealer.setDealerTurn(true);
+    }
 
     public DeckOfCards getDeck()
     {

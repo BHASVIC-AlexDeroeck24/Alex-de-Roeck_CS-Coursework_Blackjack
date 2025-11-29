@@ -85,7 +85,7 @@ public class Dealer extends Actor
                 }
 
                 //  IF THE PLAYER'S HAND TOTAL IS MORE THAN DEALER'S (PLAYER HAND WINS)
-                else if ( player.getPlayerHand(i).getHandTotal() > getHandTotal() ){
+                else if ( (player.getPlayerHand(i).getHandLost() == false)  && player.getPlayerHand(i).getHandTotal() > getHandTotal() ){
                     System.out.println("Player's hand " + (i + 1) + " has won, the dealer hand had less.");
                 }
 

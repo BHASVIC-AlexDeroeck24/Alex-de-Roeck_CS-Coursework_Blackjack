@@ -73,9 +73,18 @@ public class Player extends Actor
     
     public void addToTotalBet(int value)
     {
-        totalBet = totalBet + value;
+        this.totalBet = this.totalBet + value;
     }
     
+    public void emptyBet()
+    {
+        this.totalBet = 0;
+    }
+    
+    public void addPlayerMoney(int value)
+    {
+        this.playerMoney = this.playerMoney + value;
+    }
     
     public void subPlayerMoney(int value)
     {
