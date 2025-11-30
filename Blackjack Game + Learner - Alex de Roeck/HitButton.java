@@ -16,7 +16,9 @@ public class HitButton extends Button
         
         Hand hand = player.getPlayerHand(player.getCurrentHand());
         
-        hand.hit(world);
+        if (hand.getHandTotal() < 21 && (player.getPlayerTurn() == true)){      
+            hand.hit(world);
+        }
     }
     
     public HitButton (){

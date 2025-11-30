@@ -12,6 +12,7 @@ public class Dealer extends Actor
     private int card2Value;
     private int handTotal;
     private int lastPos;
+    private int winnings;
 
     public void act()
     {
@@ -35,6 +36,7 @@ public class Dealer extends Actor
         this.blackjack = false;
         this.lastPos = 625;
         this.dealerHand = new ArrayList<Card>();
+        this.winnings = 0;
     }
 
     public void startDealer(World world){
@@ -60,57 +62,66 @@ public class Dealer extends Actor
         MainGame mainGame = (MainGame)world;
         Player player = mainGame.getPlayer();
         revealCard();
-        while (getHandTotal() < 17){
-            System.out.println("*Dealer has less than 17, dealer hits*");
-            hit(mainGame);
-        }
-        if (getHandTotal() > 21){
-            System.out.println("*Dealer went bust, dealer stands*");
-            //What if player alos goes bust
-            lost();
-        }
-        else{
-            System.out.println("*Dealer hasn't gone bust, dealer stands");
-            stand();
-            System.out.println();
-            for (int i = 0; i <= player.getLastHand(); i++){
-                //  IF THE PLAYER'S HAND HAS ALREADY GONE BUST (DEALER HAND WINS)
-                if ( player.getPlayerHand(i).getHandLost() ){
-                    System.out.println("Player's hand " + (i + 1) + " has lost, it went bust.");
-                    player.emptyBet();
-                }
+        if ( !player.getPlayerHand(0).getHandLost() ){
+            while (getHandTotal() < 17){
+                System.out.println("*Dealer has less than 17, dealer has " + getHandTotal() + ", hits*");
+                hit(mainGame);
+            }
+            if (getHandTotal() > 21){
+                System.out.println("*Dealer went bust, dealer stands* " + getHandTotal());
+                //What if player also goes bust
+                lost(mainGame);
+            }
+            else{
+                System.out.println("*Dealer hasn't gone bust, dealer stands on " + getHandTotal());
+                stand();
+                System.out.println();
+                for (int i = 0; i <= player.getLastHand(); i++){
+                    //  IF THE PLAYER'S HAND HAS ALREADY GONE BUST (DEALER HAND WINS)
+                    if ( player.getPlayerHand(i).getHandLost() ){
+                        System.out.println("Player's hand " + (i + 1) + " has lost, it went bust.");
+                    }
 
-                //  IF THE PLAYER'S HAND TOTAL IS LESS THAN DEALER'S (DEALER HAND WINS)
-                else if ( (player.getPlayerHand(i).getHandTotal() < getHandTotal()) || player.getPlayerHand(i).getHandLost()){
-                    player.getPlayerHand(i).setHandLost(true);
-                    System.out.println("Player's hand " + (i + 1) + " has lost, the dealer beat it.");
-                    player.emptyBet();
-                }
+                    //  IF THE PLAYER'S HAND TOTAL IS LESS THAN DEALER'S (DEALER HAND WINS)
+                    else if ( (player.getPlayerHand(i).getHandTotal() < getHandTotal())
+                    || player.getPlayerHand(i).getHandLost()){
+                        System.out.println("Player's hand " + (i + 1) + " has lost, the dealer beat it.");
+                    }
 
-                //  IF THE PLAYER'S HAND TOTAL IS MORE THAN DEALER'S (PLAYER HAND WINS)
-                else if ( (player.getPlayerHand(i).getHandLost() == false) && player.getPlayerHand(i).getHandTotal() > getHandTotal() ){
-                    System.out.println("Player's hand " + (i + 1) + " has won, the dealer hand had less.");
-                    player.addPlayerMoney(2 * player.getTotalBet());
-                    player.emptyBet();
-                }
+                    //  IF THE PLAYER'S HAND TOTAL IS MORE THAN DEALER'S (PLAYER HAND WINS)
+                    else if ( (player.getPlayerHand(i).getHandLost() == false)
+                    && player.getPlayerHand(i).getHandTotal() > getHandTotal() ){
+                        System.out.println("Player's hand " + (i + 1) + " has won, the dealer hand had less.");
+                        this.winnings = 2 * player.getTotalBet();
+                        player.addPlayerMoney(winnings);
+                    }
 
-                //  IF THE PLAYER'S HAND TOTAL IS EQUAL TO THE DEALER'S (DRAW)
-                else if ( player.getPlayerHand(i).getHandTotal() == getHandTotal() ){
-                    System.out.println("Player's hand " + (i + 1) + " is equal to the dealer's hand.");
-                    player.addPlayerMoney(player.getTotalBet());
-                    player.emptyBet();
-                }
+                    //  IF THE PLAYER'S HAND TOTAL IS EQUAL TO THE DEALER'S (DRAW)
+                    else if ( player.getPlayerHand(i).getHandTotal() == getHandTotal() ){
+                        System.out.println("Player's hand " + (i + 1) + " is equal to the dealer's hand.");
+                        player.addPlayerMoney(player.getTotalBet());
 
-                // IF THE PLAYER GETS BLACKJACK (21) THEN THEY WIN
-                if ( player.getPlayerHand(i).getBlackjack()){
-                    System.out.println("BLACKJACK!! The Player's hand " + (i + 1) + " has won. Dealer had " + getHandTotal());
-                    player.addPlayerMoney( player.getTotalBet() + (int)Math.floor(1.5 * player.getTotalBet()) );
-                    //REFERENCE INT MATH.FLOOR
-                    player.emptyBet();
+                    }
+
+                    // IF THE PLAYER GETS BLACKJACK (21) THEN THEY WIN
+                    if ( player.getPlayerHand(i).getBlackjack()){
+                        System.out.println("BLACKJACK!! The Player's hand " + (i + 1) + " has won. Dealer had " + getHandTotal());
+                        this.winnings = player.getTotalBet() + (int)Math.floor(1.5 * player.getTotalBet());
+                        player.addPlayerMoney(winnings);
+                        //REFERENCE INT MATH.FLOOR
+                    }
                 }
             }
         }
+        else{
+            System.out.println("Player's hand " + 1 + " has lost, it went bust.");
+        }
+
         this.isTurn = false;
+        mainGame.displayEndGameInfo();
+        System.out.println();
+        System.out.println("-------------------- GAME OVER --------------------");
+        System.out.println();
     }
 
     public int getHandTotal (){
@@ -121,9 +132,21 @@ public class Dealer extends Actor
         return(this.isTurn);
     }
 
+    public int getWinnings (){
+        return(this.winnings);
+    }
+
     public void revealCard (){
+        System.out.println("*dealer card face status before = ");
+        for (int i = 0; i <= ( dealerHand.size() - 1 ); i++){
+            System.out.println("Card index " + i + " Face Down = " + this.dealerHand.get(i).getFaceDown());
+        }
         this.dealerHand.get(1).faceUp();
         this.handTotal = this.handTotal + dealerHand.get(1).getCardValue();
+        System.out.println("*dealer card face status after = " + this.blackjack);
+        for (int i = 0; i <= ( dealerHand.size() - 1 ); i++){
+            System.out.println("Card index " + i + " Face Down = " + this.dealerHand.get(i).getFaceDown());
+        }
     }
 
     public void setDealerTurn (Boolean value)
@@ -135,18 +158,18 @@ public class Dealer extends Actor
         return (this.handLost);
     }
 
-    public void lost (){
-        World world = getWorld();
+    public void lost (World world){
         MainGame mainGame = (MainGame)world;
         Player player = mainGame.getPlayer();
-        
+
+        this.winnings = 2 * player.getTotalBet();
         this.handLost = true;
         System.out.println("Player wins, the dealer went bust with a hand total of: " + this.handTotal);
-        
+
         for (int i = 0; i <= player.getLastHand(); i++){
             //CHECK FOR PLAYER IF THEY HAVE BUSTED THEN THEY LOSE BET NOT WIN IT, CHECK FOR EACH HAND
             if ( (player.getPlayerHand(i).getHandLost() == false) ){
-                player.addPlayerMoney(2 * player.getTotalBet());
+                player.addPlayerMoney(this.winnings);
                 player.emptyBet();
             }
             else{

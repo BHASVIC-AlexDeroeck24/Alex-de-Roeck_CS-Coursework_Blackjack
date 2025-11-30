@@ -48,6 +48,10 @@ public class Card extends Actor
         this.faceDown = false;
     }
     
+    public boolean getFaceDown(){
+        return this.faceDown;
+    }
+    
     //UNUSED CODE BELOW ---------------------------------------------------------------------------------------------------------------
 
     public void UNUSED_CODE1 (int cardVal, String cardSu, String cardIs){

@@ -14,18 +14,6 @@ public class Hand extends Actor
     public void act()
     {
         // Add your action code here.
-        if (this.handTotal > 21){
-            this.handLost = true;
-        }
-        
-        else if (this.handTotal == 21){
-            this.blackjack = true;
-        }
-        
-        else{
-            this.blackjack = false;
-            this.handLost = false;
-        }
     }
 
     //FOR FIRST HAND --------------------------------------------------------------
@@ -35,7 +23,7 @@ public class Hand extends Actor
         this.lastPos = 575;
         this.cardsInHand = new ArrayList<Card>();
     }
-    
+
     public void startHand(World world){
         MainGame mainGame = (MainGame)world;
         DeckOfCards deck = mainGame.getDeck();
@@ -82,46 +70,69 @@ public class Hand extends Actor
     }   //polymorhphism for splitting
     //extra note, I would
 
-    
     public int getHandTotal(){
         return (this.handTotal);
     }
-    
+
     public boolean getBlackjack(){
         return (this.blackjack);
     }
-    
+
     public boolean getHandLost(){
         return this.handLost;
     }
-    
+
     public void setHandLost(Boolean value){
         this.handLost = value;
     }
-    
-    
+
+    public void checkHandStatus(){
+        if (this.handTotal >= 22){
+
+            this.handLost = true;
+        }
+        else{
+            this.handLost = false;
+        }
+
+        if ((this.card1Value + this.card2Value) == 21){
+            this.blackjack = true;
+        }
+        else{
+            this.blackjack = false;
+        }
+
+        System.out.println("*Hand total = " + this.handTotal);
+        System.out.println("*Blackjack = " + this.blackjack);
+        System.out.println("*Hand Lost = " + this.handLost);
+    }
+
     public void hit(World world)
     {
         MainGame mainGame = (MainGame)world;
         DeckOfCards deck = mainGame.getDeck();
         Player player = mainGame.getPlayer();
-        
-        /**
+
         Card newCard = deck.dealCard();
-            this.cardsInHand.add(newCard);
-            this.handTotal = this.handTotal + newCard.getCardValue();
-            mainGame.addObject(newCard, this.lastPos + 85, 430);
-            lastPos = lastPos + 85;
-        */
-       
+        this.cardsInHand.add(newCard);
+        this.handTotal = this.handTotal + newCard.getCardValue();
+        mainGame.addObject(newCard, this.lastPos + 85, 430);
+        lastPos = lastPos + 85;
+
+        checkHandStatus();
+        
+        System.out.println("*Hit, Hand total = " + this.handTotal);
+
+        /**
         if (this.handTotal < 21 && (player.getPlayerTurn() == true)){           
-            Card newCard = deck.dealCard();
-            this.cardsInHand.add(newCard);
-            this.handTotal = this.handTotal + newCard.getCardValue();
-            mainGame.addObject(newCard, this.lastPos + 85, 430);
-            lastPos = lastPos + 85;
+        Card newCard = deck.dealCard();
+        this.cardsInHand.add(newCard);
+        this.handTotal = this.handTotal + newCard.getCardValue();
+        mainGame.addObject(newCard, this.lastPos + 85, 430);
+        lastPos = lastPos + 85;
         }
-    
+         */
+
     }
 
     public void stand(World world)
@@ -129,8 +140,15 @@ public class Hand extends Actor
         //
         MainGame mainGame = (MainGame)world;
         Player player = mainGame.getPlayer();
-        
+        Dealer dealer = mainGame.getDealer();
+
         player.setPlayerTurn(false);
+        
+        System.out.println("*Stood, Hand total = " + this.handTotal);
+        
+        //if( player.getCurrentHand() == player.getLastHand() ){
+            dealer.dealerTurn(world);
+        //}
     }
 
     public void split()
@@ -139,14 +157,20 @@ public class Hand extends Actor
         MainGame mainGame = (MainGame)world;
         DeckOfCards deck = mainGame.getDeck();
         Player player = mainGame.getPlayer();
-        
+
         if (card1Value == card2Value && (player.getPlayerTurn() == true)){
-            
+
         }
     }
 
-    public void doubleDown()
+    public void doubleDown(World world)
     {
         //
+        MainGame mainGame = (MainGame)world;
+        
+        this.hit(mainGame);
+        this.stand(mainGame);
+        
+        System.out.println("*Doubled Down, Hand total = " + this.handTotal);
     }
 }

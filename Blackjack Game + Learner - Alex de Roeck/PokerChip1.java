@@ -18,7 +18,8 @@ public class PokerChip1 extends PokerChips
         Player player = mainGame.getPlayer();
         Dealer dealer = mainGame.getDealer();
         
-        if ((player.getPlayerMoney() >= this.myValue) && (player.getPlayerTurn() == false) && (dealer.getDealerTurn() == false) ){
+        if ((player.getPlayerMoney() >= this.myValue) && (player.getPlayerTurn() == false)
+        && (dealer.getDealerTurn() == false) ){
             player.subPlayerMoney(this.myValue);
             player.addToTotalBet(this.myValue);
             System.out.println("Updated Player Money and Total Bet");

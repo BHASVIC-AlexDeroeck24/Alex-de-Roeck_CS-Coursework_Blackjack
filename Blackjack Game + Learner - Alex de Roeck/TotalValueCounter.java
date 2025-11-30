@@ -16,7 +16,7 @@ public class TotalValueCounter extends Actor
     {
         if (this.isPlayerMoney){
             this.totalValue = playerCounted.getPlayerMoney();
-            setImage(new GreenfootImage("Total Money: " + totalValue, 35, Color.BLACK, new Color(0, 0, 0, 0)));
+            setImage(new GreenfootImage("Balance: " + totalValue, 35, Color.BLACK, new Color(0, 0, 0, 0)));
         }
         else if (this.isTotalBet){
             this.handTotal = playerCounted.getTotalBet();
@@ -56,7 +56,7 @@ public class TotalValueCounter extends Actor
         this.playerCounted = player;
         this.totalValue = player.getPlayerMoney();
 
-        setImage(new GreenfootImage("Total Money: " + totalValue, 35, Color.BLACK, new Color(0, 0, 0, 0)));
+        setImage(new GreenfootImage("Balance: " + totalValue, 35, Color.BLACK, new Color(0, 0, 0, 0)));
     }
     
     public TotalValueCounter (Player player, boolean value)

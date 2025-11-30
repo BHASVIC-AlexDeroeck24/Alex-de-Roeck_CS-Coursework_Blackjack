@@ -29,34 +29,33 @@ public class Player extends Actor
         this.isTurn = false;
     }
 
-    
     public int getLastHand (){
         return(this.lastHand);
     }
-    
+
     public void setLastHand (int value){
         this.lastHand = value;
     }
-    
-    
+
     public Boolean getPlayerTurn (){
         return(this.isTurn);
     }
-    
+
     public void setPlayerTurn (Boolean value){
         this.isTurn = value;
     }
-    
-    
+
     public Hand getPlayerHand (int index){
-        return (this.handsList.get(index));
+        if (!this.handsList.isEmpty()){
+            return (this.handsList.get(index));
+        }
+        return(null);
     }
-    
+
     public void addToHandList (Hand hand){
         this.handsList.add(hand);
     }
 
-    
     public int getCurrentHand(){
         return this.currentHand;
     }
@@ -64,33 +63,32 @@ public class Player extends Actor
     public int getPlayerMoney(){
         return this.playerMoney;
     }
-    
-    
+
     public int getTotalBet()
     {
         return totalBet;
     }
-    
+
     public void addToTotalBet(int value)
     {
         this.totalBet = this.totalBet + value;
     }
-    
+
     public void emptyBet()
     {
         this.totalBet = 0;
     }
-    
+
     public void addPlayerMoney(int value)
     {
         this.playerMoney = this.playerMoney + value;
     }
-    
+
     public void subPlayerMoney(int value)
     {
         this.playerMoney = this.playerMoney - value;
     }
-    
+
     public void stand(World world)
     {
         this.isTurn = false;

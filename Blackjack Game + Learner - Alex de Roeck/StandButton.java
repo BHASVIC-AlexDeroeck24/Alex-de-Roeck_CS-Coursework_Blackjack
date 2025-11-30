@@ -30,9 +30,7 @@ public class StandButton extends Button
         
         hand.stand(world);
         
-        if( player.getCurrentHand() == player.getLastHand() ){
-            dealer.dealerTurn(world);
-        }
+        
     }
     
     public StandButton (){

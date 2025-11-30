@@ -105,6 +105,15 @@ public class MainGame extends World
         dealer.setDealerTurn(true);
     }
 
+    
+    public void displayEndGameInfo()
+    {
+        InformationOutputter infoOutter = new InformationOutputter(this);
+        addObject(infoOutter, 600, 350);
+        player.emptyBet();
+    }
+    
+    
     public DeckOfCards getDeck()
     {
         return deck;
