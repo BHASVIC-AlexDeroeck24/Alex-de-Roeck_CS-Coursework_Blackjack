@@ -24,6 +24,4 @@ public class HitButton extends Button
     public HitButton (){
         setMoveButtonSize();
     }
-    
-    
 }

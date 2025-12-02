@@ -68,7 +68,6 @@ public class Hand extends Actor
 
         this.handTotal = card1Value + card2Value;
     }   //polymorhphism for splitting
-    //extra note, I would
 
     public int getHandTotal(){
         return (this.handTotal);
@@ -120,19 +119,8 @@ public class Hand extends Actor
         lastPos = lastPos + 85;
 
         checkHandStatus();
-        
+
         System.out.println("*Hit, Hand total = " + this.handTotal);
-
-        /**
-        if (this.handTotal < 21 && (player.getPlayerTurn() == true)){           
-        Card newCard = deck.dealCard();
-        this.cardsInHand.add(newCard);
-        this.handTotal = this.handTotal + newCard.getCardValue();
-        mainGame.addObject(newCard, this.lastPos + 85, 430);
-        lastPos = lastPos + 85;
-        }
-         */
-
     }
 
     public void stand(World world)
@@ -143,11 +131,11 @@ public class Hand extends Actor
         Dealer dealer = mainGame.getDealer();
 
         player.setPlayerTurn(false);
-        
+
         System.out.println("*Stood, Hand total = " + this.handTotal);
-        
+
         //if( player.getCurrentHand() == player.getLastHand() ){
-            dealer.dealerTurn(world);
+        dealer.dealerTurn(world);
         //}
     }
 
@@ -167,10 +155,10 @@ public class Hand extends Actor
     {
         //
         MainGame mainGame = (MainGame)world;
-        
+
         this.hit(mainGame);
         this.stand(mainGame);
-        
+
         System.out.println("*Doubled Down, Hand total = " + this.handTotal);
     }
 }

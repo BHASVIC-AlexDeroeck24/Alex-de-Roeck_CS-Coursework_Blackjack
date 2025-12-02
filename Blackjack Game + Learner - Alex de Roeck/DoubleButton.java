@@ -1,11 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class DoubleButton here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class DoubleButton extends Button
 {
     public void act()

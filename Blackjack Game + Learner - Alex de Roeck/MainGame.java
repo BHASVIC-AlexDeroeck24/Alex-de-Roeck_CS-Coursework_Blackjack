@@ -89,7 +89,6 @@ public class MainGame extends World
     }
 
     public void gameStart(){
-        //
         deck.shuffleDeck();
         dealer.startDealer(this);
         hand1.startHand(this);
